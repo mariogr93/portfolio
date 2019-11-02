@@ -1,8 +1,7 @@
 import React from 'react';
 
 const About = () => (
-    <div><
-        h1>ABOUT ME</h1>
+    <div><h1>ABOUT ME</h1>
         <span>
         
         Curious person who is always hungry to learn. Passionate for web programming and looking forward<br/>
