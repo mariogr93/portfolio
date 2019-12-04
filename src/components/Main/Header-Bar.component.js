@@ -16,7 +16,7 @@ const HeaderBar = () => (
                 Portfolio
             </Link>
             <Link className='option' to='/signin'>
-                SIGN IN
+                SIGN IN/UP
             </Link>
         
         </div>
