@@ -1,56 +1,49 @@
-import React from "react";
+import React from 'react';
 
 import CustomButton from './CustomButton.component';
 import FormInput from './FormInput.component';
 
-//import { auth, createUserProfileDocument } from "../../firebase/firebase.utils";
-
-
-
+import { auth, createUserProfile, signInWithGoogle, signInWithGit } from '../../firebase/Firebase-connection';
 
 class SignUp extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			displayName: "",
-			email: "",
-			password: "",
-			confirmPassword: ""
+			displayName: '',
+			email: '',
+			password: '',
+			confirmPassword: ''
 		};
 	}
 
 	handleSubmit = async event => {
-        event.preventDefault();
-        	this.setState({
-				displayName: "",
-				email: "",
-				password: "",
-				confirmPassword: ""
+		event.preventDefault();
+
+		const { displayName, email, password, confirmPassword } = this.state;
+
+		if (password !== confirmPassword) {
+			alert("passwords don't match");
+			return;
+		}
+
+		try {
+			const { user } = await auth.createUserWithEmailAndPassword(
+				email,
+				password
+			);
+
+			await createUserProfile(user, { displayName });
+
+			this.setState({
+				displayName: '',
+				email: '',
+				password: '',
+				confirmPassword: ''
 			});
-		// const { displayName, email, password, confirmPassword } = this.state;
-		// if (password !== confirmPassword) {
-		// 	alert("Your passwords do not match");
-		// 	return;
-		// }
-
-		// try {
-		// 	const { user } = await auth.createUserWithEmailAndPassword(
-		// 		email,
-		// 		password
-		// 	);
-
-		// 	await createUserProfileDocument(user, { displayName });
-
-		// 	this.setState({
-		// 		displayName: "",
-		// 		email: "",
-		// 		password: "",
-		// 		confirmPassword: ""
-		// 	});
-		// } catch (error) {
-		// 	console.error(error);
-		// }
+		} catch (error) {
+			console.error(error);
+		}
 	};
 
 	handleChange = event => {
@@ -98,7 +91,8 @@ class SignUp extends React.Component {
 						required
 					/>
 					<CustomButton type='submit'>SIGN UP</CustomButton>
-                      
+					<CustomButton onClick={signInWithGoogle} isGoogleSignIn> SIGN IN WITH GOOGLE</CustomButton>
+					<CustomButton onClick={signInWithGit} isGithubSignIn> SIGN IN WITH GIT</CustomButton>
 				</form>
 			</div>
 		);

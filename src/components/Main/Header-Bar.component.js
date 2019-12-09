@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { auth } from '../../firebase/Firebase-connection';
 
 import MyName from './Name.component';
-const HeaderBar = () => (
+const HeaderBar = ({currentUser}) => (
     <div className='header'>
         <Link className='logo-container' to='/'>
             <MyName className='logo' />
@@ -15,9 +16,15 @@ const HeaderBar = () => (
             <Link className='option' to='/portfolio'>
                 Portfolio
             </Link>
-            <Link className='option' to='/signin'>
-                SIGN IN/UP
-            </Link>
+            {
+                currentUser?
+                <div className='option' onClick={()=> auth.signOut()}>SIGN OUT</div>
+                :
+                <Link className='option' to='/signin'>
+                    SIGN IN/UP
+                </Link>
+            }
+            
         
         </div>
     </div>
