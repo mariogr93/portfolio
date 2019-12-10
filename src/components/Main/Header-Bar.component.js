@@ -18,7 +18,7 @@ const HeaderBar = ({currentUser}) => (
             </Link>
             {
                 currentUser?
-                <div className='option' onClick={()=> auth.signOut()}>SIGN OUT</div>
+                <span className='option' onClick={()=> auth.signOut()}>SIGN OUT</span>
                 :
                 <Link className='option' to='/signin'>
                     SIGN IN/UP

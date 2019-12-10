@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Restaurant = () => (
+const HomePageRestaurant = () => (
     <div>
         <h1>RESTAURANT</h1>
         
     </div>
 );
 
-export default Restaurant;
+export default HomePageRestaurant;
