@@ -84,6 +84,7 @@ typings/
 
 # dotenv environment variables file
 .env
+index.js
 <<<<<<< HEAD
 .env.test
 
