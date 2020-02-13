@@ -1,5 +1,5 @@
 import React from 'react';
 
-const MyName = () => "<Mario-Guadalupe/>";
+const MyName = (props) => (<div>{props.headerName}</div>);
 
 export default MyName;

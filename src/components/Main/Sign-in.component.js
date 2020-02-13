@@ -1,7 +1,7 @@
 import React from "react";
 import FormInput from "../Main/FormInput.component";
 import CustomButton from "../Main/CustomButton.component";
-import { auth, signInWithGoogle } from '../../firebase/Firebase-connection';
+import { auth, signInWithGoogle, signInWithGit } from '../../firebase/Firebase-connection';
 
 
 
@@ -22,7 +22,9 @@ class SignIn extends React.Component {
 			await auth.signInWithEmailAndPassword(email, password);
 			this.setState({ email: "", password: "" });
 		} catch (error) {
+			
 			console.error(error);
+			console.log('fokiu');
 		}
 		
 	};
@@ -59,6 +61,8 @@ class SignIn extends React.Component {
 					<div className='buttons'>
 						<CustomButton type='submit'> SIGN IN </CustomButton>
 						<CustomButton onClick={signInWithGoogle} isGoogleSignIn> SIGN IN WITH GOOGLE</CustomButton>
+						<CustomButton onClick={signInWithGit} isGithubSignIn> SIGN IN WITH GIT</CustomButton>
+						
 					</div>
 					
 				</form>
